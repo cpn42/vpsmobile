@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VPS</string>
+    <string name="action_settings">Configuration</string>
+    <string name="current_mission">MISSION EN COURS</string>
+    <string name="daynamesingle">jours</string>
+    <string name="daynameplural">jour</string>
+    <string name="hourabbrev">h</string>
+    <string name="other_missions">AUTRES MISSIONS</string>
+    <string name="date">Date</string>
+    <string name="driver">Chef de convoi</string>
+    <string name="journey">Trajet</string>
+    <string name="estimated_duration">Durée estimée</string>
+    <string name="login_failed">Erreur de connexion</string>
+    <string name="invalid_user">Nom d\'utilisateur invalide</string>
+    <string name="invalid_password">Mot de passe invalide</string>
+    <string name="authent">Connexion...</string>
+    <string name="user_name">Nom</string>
+    <string name="password">Mot de passe</string>
+    <string name="transporter_informations">Transporteur</string>
+    <string name="title_activity_mission">Convoi</string>
+    <string name="order">N° d\'arrété</string>
+    <string name="phone_number">N° de téléphone</string>
+    <string name="phone">Téléphone</string>
+    <string name="dimensions">PxLxlxH</string>
+    <string name="category">Catégorie</string>
+    <string name="_1st">1er</string>
+    <string name="_2nd">2e</string>
+    <string name="_3rd">3e</string>
+    <string name="journey_informations">Informations concernant le trajet</string>
+    <string name="departure">Départ</string>
+    <string name="arrival">Arrivée</string>
+    <string name="estimated_time_of_departure">Date et heure de départ demandée</string>
+    <string name="departure_comments">Observations de début de convoi</string>
+    <string name="status">Status</string>
+    <string name="discharge">Décharge signée</string>
+    <string name="in_progress">En cours</string>
+    <string name="ot_number">N° d\'OT</string>
+</resources>

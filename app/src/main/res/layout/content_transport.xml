@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?><!-- <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layoutTransport"
+    android:background="@drawable/gradient_orange"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="fr.bs_tech.vps.Transport"
+    tools:showIn="@layout/activity_transport">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="100"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="fr.bs_tech.vps.Transport"
+        tools:showIn="@layout/activity_transport">
+
+        <TableLayout
+            android:id="@+id/mainTable"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="15dp"
+            android:layout_weight="22"
+            android:shrinkColumns="*"
+            android:stretchColumns="*"
+            tools:layout_editor_absoluteX="258dp"
+            tools:layout_editor_absoluteY="0dp">
+
+            <TableRow
+                android:id="@+id/rowMainTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:padding="0dp">
+
+                <TextView
+                    android:id="@+id/txtMainTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_span="5"
+                    android:layout_weight="0"
+                    android:gravity="start"
+                    android:text="@string/current_mission"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/rowCurrentMissionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FF000000"
+                android:gravity="center_horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/tvCMDateHeader"
+                    android:gravity="center"
+                    android:text="@string/date"
+                    android:textColor="#FFE0E0E0"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+
+                <TextView
+                    android:id="@+id/tvCMMissionHeader"
+                    android:gravity="center"
+                    android:text="@string/ot_number"
+                    android:textColor="#FFE0E0E0"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+
+                <TextView
+                    android:id="@+id/tvCMDriverHeader"
+                    android:gravity="center"
+                    android:text="@string/driver"
+                    android:textColor="#FFE0E0E0"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+
+                <TextView
+                    android:id="@+id/tvCMJourneyHeader"
+                    android:gravity="center"
+                    android:text="@string/journey"
+                    android:textColor="#FFE0E0E0"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+
+                <TextView
+                    android:id="@+id/tvCMDurationHeader"
+                    android:gravity="center"
+                    android:text="@string/estimated_duration"
+                    android:textColor="#FFE0E0E0"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+            </TableRow>
+        </TableLayout>
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/list_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+
+            <TableLayout
+                android:id="@+id/otherTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:id="@+id/rowOtherTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:padding="0dp">
+
+                    <TextView
+                        android:id="@+id/txtOtherTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_span="5"
+                        android:gravity="start"
+                        android:text="@string/other_missions"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:typeface="serif" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/rowOtherMissionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FF000000"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/tvOMDateHeader"
+                        android:gravity="center"
+                        android:text="@string/date"
+                        android:textColor="#FFE0E0E0"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:typeface="serif" />
+
+                    <TextView
+                        android:id="@+id/tvOMMissionHeader"
+                        android:gravity="center"
+                        android:text="@string/ot_number"
+                        android:textColor="#FFE0E0E0"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:typeface="serif" />
+
+                    <TextView
+                        android:id="@+id/tvOMDriverHeader"
+                        android:gravity="center"
+                        android:text="@string/driver"
+                        android:textColor="#FFE0E0E0"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:typeface="serif" />
+
+                    <TextView
+                        android:id="@+id/tvOMJourneyHeader"
+                        android:gravity="center"
+                        android:text="@string/journey"
+                        android:textColor="#FFE0E0E0"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:typeface="serif" />
+
+                    <TextView
+                        android:id="@+id/tvOMDurationHeader"
+                        android:gravity="center"
+                        android:text="@string/estimated_duration"
+                        android:textColor="#FFE0E0E0"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:typeface="serif" />
+                </TableRow>
+            </TableLayout>
+
+            <!--     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/list_scroll"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="55">
+
+                    <TableLayout
+                        android:id="@+id/otherTable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:shrinkColumns="*"
+                        android:stretchColumns="*">
+                      -->
+            <!-- Data will be inserted dynamically -->
+            <!--</TableLayout> -->
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFF6600"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/txtUserName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:text="Paul Durant de la Sabliere"
+            android:textColor="#FFE0E0E0"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:typeface="serif" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

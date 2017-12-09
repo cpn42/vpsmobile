@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_custom_layout"
+    android:layout_width="400dp"
+    android:layout_height="wrap_content"
+    android:background="#FFFF6600"
+    android:orientation="vertical"
+    android:padding="2dp">
+
+    <ImageButton
+        android:id="@+id/ib_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@null"
+        android:src="@drawable/ic_close" />
+
+    <TextView
+        android:id="@+id/tvJuridique"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minLines="3"
+        android:maxLines="5"
+        android:scrollbars="vertical"
+        android:text="" />
+
+    <RelativeLayout
+        android:id="@+id/siglayout"
+        android:layout_width="300dp"
+        android:minWidth="400dp"
+        android:layout_height="150dp"></RelativeLayout>
+
+    <Button
+        android:id="@+id/btnOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/validate" />
+
+</LinearLayout>

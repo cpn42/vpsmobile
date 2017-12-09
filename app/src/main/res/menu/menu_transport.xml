@@ -1,0 +1,34 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="fr.bs_tech.vps.Transport">
+    <!-- <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" /> -->
+    <item
+        android:id="@+id/action_driving"
+        android:icon="@drawable/ic_steering_wheel"
+        android:title="Driving"
+        android:onClick="onClickStatusDriving"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_working"
+        android:icon="@drawable/ic_icon_hammers"
+        android:title="Working"
+        android:onClick="onClickStatusWorking"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_onboard"
+        android:icon="@drawable/ic_square"
+        android:title="OnBoard"
+        android:onClick="onClickStatusOnboard"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_resting"
+        android:icon="@drawable/ic_bed"
+        android:title="Resting"
+        android:onClick="onClickStatusResting"
+        app:showAsAction="always" />
+</menu>
