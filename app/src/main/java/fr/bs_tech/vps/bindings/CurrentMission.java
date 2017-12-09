@@ -20,6 +20,8 @@ public class CurrentMission extends BaseObservable
     private String tvDate;
     private String tvStatus;
     private String tvTransporterName;
+    private String editVehicleRegTR;
+    private String editVehicleRegSR;
     private String tvConvoyLeader;
     private String tvOrderTitle;
     private String editOrder;
@@ -38,6 +40,10 @@ public class CurrentMission extends BaseObservable
     private String tvDepKm;
     private String editDepComments;
     private String bmpSigDischarge;
+    private String editArrivalKm;
+    private String editDepartureKm;
+    private String editApproachKm;
+    private String editTotalKm;
     private boolean bSignedDischarge;
 
     public String getLogin()
@@ -108,6 +114,30 @@ public class CurrentMission extends BaseObservable
     public void setTvTransporterName(String tvTransporterName)
     {
         this.tvTransporterName = tvTransporterName;
+    }
+
+    @Bindable
+    public String getEditVehicleRegTR()
+    {
+        return editVehicleRegTR;
+    }
+
+    public void setEditVehicleRegTR(String editVehicleRegTR)
+    {
+        this.editVehicleRegTR = editVehicleRegTR;
+        notifyPropertyChanged(BR.editVehicleRegTR);
+    }
+
+    @Bindable
+    public String getEditVehicleRegSR()
+    {
+        return editVehicleRegSR;
+    }
+
+    public void setEditVehicleRegSR(String editVehicleRegSR)
+    {
+        this.editVehicleRegSR = editVehicleRegSR;
+        notifyPropertyChanged(BR.editVehicleRegSR);
     }
 
     public String getTvConvoyLeader()
@@ -310,5 +340,53 @@ public class CurrentMission extends BaseObservable
     public void setbSignedDischarge(boolean bSignedDischarge)
     {
         this.bSignedDischarge = bSignedDischarge;
+    }
+
+    @Bindable
+    public String getEditArrivalKm()
+    {
+        return editArrivalKm;
+    }
+
+    public void setEditArrivalKm(String editArrivalKm)
+    {
+        this.editArrivalKm = editArrivalKm;
+        notifyPropertyChanged(BR.editArrivalKm);
+    }
+
+    @Bindable
+    public String getEditDepartureKm()
+    {
+        return editDepartureKm;
+    }
+
+    public void setEditDepartureKm(String editDepartureKm)
+    {
+        this.editDepartureKm = editDepartureKm;
+        notifyPropertyChanged(BR.editDepartureKm);
+    }
+
+    @Bindable
+    public String getEditApproachKm()
+    {
+        return editApproachKm;
+    }
+
+    public void setEditApproachKm(String editApproachKm)
+    {
+        this.editApproachKm = editApproachKm;
+        notifyPropertyChanged(BR.editApproachKm);
+    }
+
+    @Bindable
+    public String getEditTotalKm()
+    {
+        return editTotalKm;
+    }
+
+    public void setEditTotalKm(String editTotalKm)
+    {
+        this.editTotalKm = editTotalKm;
+        notifyPropertyChanged(BR.editTotalKm);
     }
 }

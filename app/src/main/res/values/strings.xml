@@ -17,7 +17,7 @@
     <string name="user_name">User name</string>
     <string name="password">Password</string>
     <string name="title_activity_mission">Mission</string>
-    <string name="transporter_informations">Transporter</string>
+    <string name="transporter_name">Transporter name</string>
     <string name="order">Order #</string>
     <string name="phone_number">Phone number</string>
     <string name="phone">Phone</string>
@@ -43,4 +43,18 @@
     <string name="error_file_sig">Couldn\'t create signature file. Please use paper.</string>
     <string name="validate">Validate</string>
     <string name="toto">toto</string>
+    <string name="order_number">order number</string>
+    <string name="vehicle_registration">Vehicle registration</string>
+    <string name="tr">TR</string>
+    <string name="sr">SR</string>
+    <string name="firstname_and_last_name">Firstname and last name</string>
+    <string name="p">P</string>
+    <string name="l">L</string>
+    <string name="lmin">l</string>
+    <string name="h">H</string>
+    <string name="requested_time_and_date">Requested time and date</string>
+    <string name="arrival_km">Arrival Km</string>
+    <string name="departure_km">Departure Km</string>
+    <string name="approach_km">Approach Km</string>
+    <string name="total_km">Total Km</string>
 </resources>

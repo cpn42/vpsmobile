@@ -2,7 +2,6 @@ package fr.bs_tech.vps;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.NavUtils;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -106,11 +105,11 @@ public class Mission extends BaseActivity
     protected void showPopup()
     {
         Context mContext;
-        ConstraintLayout parentlayout;
+        RelativeLayout parentlayout;
         final CaptureSignatureView mSig = new CaptureSignatureView(this, null);
 
         mContext = getApplicationContext();
-        parentlayout = (ConstraintLayout) findViewById(R.id.mission_layout);
+        parentlayout = (RelativeLayout) findViewById(R.id.mission_layout);
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
         View customView = inflater.inflate(R.layout.popup_signature, null);
         ViewGroup dlgView = (ViewGroup) customView.findViewById(R.id.siglayout);
@@ -124,8 +123,8 @@ public class Mission extends BaseActivity
 
         // Use MATCH_PARENT to have a full-screen popup
         SignaturePopup = new PopupWindow(customView,
-                ConstraintLayout.LayoutParams.WRAP_CONTENT,
-                ConstraintLayout.LayoutParams.WRAP_CONTENT);
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
         SignaturePopup.setOutsideTouchable(false);
         
         Button okButton = (Button) customView.findViewById(R.id.btnOk);
