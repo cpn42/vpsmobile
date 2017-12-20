@@ -3,19 +3,26 @@ package fr.bs_tech.vps.bindings;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.databinding.ObservableField;
+import android.databinding.ObservableInt;
 import android.graphics.Bitmap;
+import android.view.View;
+import android.widget.RadioButton;
+
+import java.io.Serializable;
 
 import fr.bs_tech.vps.BR;
+import fr.bs_tech.vps.R;
 
 /**
  * Created by cpellerin on 06/12/2017.
  */
 
-public class CurrentMission extends BaseObservable
+public class CurrentMission extends BaseObservable implements Serializable
 {
     private String login;
     private String pwdHash;
     private String globalJourney;
+    private int currentMissionStatus;
     private String tvOt;
     private String tvDate;
     private String tvStatus;
@@ -30,6 +37,7 @@ public class CurrentMission extends BaseObservable
     private String editDimL;
     private String editDiml;
     private String editDimH;
+    private int cbCategory;
     private String tvMainTitle;
     private String tvTimeDeparture;
     private String tvArrivalKm;
@@ -45,6 +53,8 @@ public class CurrentMission extends BaseObservable
     private String editApproachKm;
     private String editTotalKm;
     private boolean bSignedDischarge;
+
+    public final ObservableInt convoyCategory = new ObservableInt();
 
     public String getLogin()
     {
@@ -74,6 +84,16 @@ public class CurrentMission extends BaseObservable
     public void setGlobalJourney(String globalJourney)
     {
         this.globalJourney = globalJourney;
+    }
+
+    public int getCurrentMissionStatus()
+    {
+        return currentMissionStatus;
+    }
+
+    public void setCurrentMissionStatus(int currentMissionStatus)
+    {
+        this.currentMissionStatus = currentMissionStatus;
     }
 
     public String getTvOt()
@@ -228,6 +248,16 @@ public class CurrentMission extends BaseObservable
     {
         this.editDimH = editDimH;
         notifyPropertyChanged(BR.editDimH);
+    }
+
+    public int getCbCategory()
+    {
+        return cbCategory;
+    }
+
+    public void setCbCategory(int cbCategory)
+    {
+        this.cbCategory = cbCategory;
     }
 
     public String getTvMainTitle()
@@ -388,5 +418,27 @@ public class CurrentMission extends BaseObservable
     {
         this.editTotalKm = editTotalKm;
         notifyPropertyChanged(BR.editTotalKm);
+    }
+
+    public void onBtnCategory(View v)
+    {
+        boolean checked = ((RadioButton) v).isChecked();
+
+        switch(v.getId())
+        {
+            case R.id.rb1:
+                if(checked)
+                    this.setCbCategory(1);
+                break;
+            case R.id.rb2:
+                if(checked)
+                    this.setCbCategory(2);
+                break;
+            case R.id.rb3:
+                if(checked)
+                    this.setCbCategory(3);
+                break;
+        }
+
     }
 }

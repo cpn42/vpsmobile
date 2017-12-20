@@ -13,7 +13,7 @@
     <string name="login_failed">Login failed</string>
     <string name="invalid_user">Invalid user name</string>
     <string name="invalid_password">Invalid password</string>
-    <string name="authent">Authenticating...</string>
+    <string name="authent">Authenticating…</string>
     <string name="user_name">User name</string>
     <string name="password">Password</string>
     <string name="title_activity_mission">Mission</string>
@@ -42,19 +42,25 @@
     <string name="do_not_use">Don\'t use this</string>
     <string name="error_file_sig">Couldn\'t create signature file. Please use paper.</string>
     <string name="validate">Validate</string>
-    <string name="toto">toto</string>
     <string name="order_number">order number</string>
     <string name="vehicle_registration">Vehicle registration</string>
     <string name="tr">TR</string>
     <string name="sr">SR</string>
     <string name="firstname_and_last_name">Firstname and last name</string>
-    <string name="p">P</string>
+    <string name="p">D</string>
     <string name="l">L</string>
-    <string name="lmin">l</string>
+    <string name="lmin">w</string>
     <string name="h">H</string>
     <string name="requested_time_and_date">Requested time and date</string>
     <string name="arrival_km">Arrival Km</string>
     <string name="departure_km">Departure Km</string>
     <string name="approach_km">Approach Km</string>
     <string name="total_km">Total Km</string>
+    <string name="start_curr_miss">Are you sure you want to start current mission ?</string>
+    <string name="switch_miss">Are you sure you want to finish this mission and switch to another ?</string>
+    <string name="finish_curr_miss">Are you sure you want to finish this mission ?</string>
+    <string name="mission_status">Mission status</string>
+    <string name="transporter_informations">Transporter</string>
+    <string name="pending">Pending</string>
+    <string name="finished">Finished</string>
 </resources>

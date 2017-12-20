@@ -4,8 +4,11 @@ package fr.bs_tech.vps;
  * Created by cpellerin on 28/11/2017.
  */
 
+import android.Manifest;
 import android.os.Bundle;
 import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -20,6 +23,7 @@ import java.security.NoSuchAlgorithmException;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import fr.bs_tech.vps.bindings.CurrentMission;
+import fr.bs_tech.vps.utils.SendHTTPPost;
 
 public class Login extends BaseActivity
 {
@@ -37,6 +41,8 @@ public class Login extends BaseActivity
         setContentView(R.layout.login_transport);
         ButterKnife.bind(this);
 
+
+
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         _loginButton.setOnClickListener(new View.OnClickListener()
         {
@@ -52,6 +58,9 @@ public class Login extends BaseActivity
     {
         String username;
         String password;
+        SendHTTPPost post;
+        String json = "";
+        String result;
 
         if (!validate())
         {
@@ -63,10 +72,21 @@ public class Login extends BaseActivity
 
         username = _usernameText.getText().toString();
         password = _passwordText.getText().toString();
+        json = "{\"login\":\"" + username +"\", ";
+        json += "\"password\":\"" + MD5(password) +"\"}\n";
 
         curMiss = new CurrentMission();
 
-        if (password.equals("123456"))
+        post = new SendHTTPPost();
+        post.execute("http://vpsmobile.pierrel.social/json.php", json);
+        result = null;
+        while(result == null)
+        {
+            result = post.getResult();
+        }
+
+        Log.v("HTTP", result);
+        if (result.equals("LoginOk"))
         {
             // TODO: Implement your own authentication logic here.
             _loginButton.setEnabled(true);
@@ -80,7 +100,6 @@ public class Login extends BaseActivity
             loginFailed();
             return;
         }
-
     }
 
     @Override

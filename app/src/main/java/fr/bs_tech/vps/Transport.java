@@ -1,8 +1,11 @@
 package fr.bs_tech.vps;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
@@ -12,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import fr.bs_tech.vps.bindings.CurrentMission;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -27,6 +30,7 @@ public class Transport extends BaseActivity
     {
         super.onCreate(savedInstanceState);
 
+        setActivityName("Transport");
         // Display toolbar and use it as an action bar
         setContentView(R.layout.activity_transport);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -35,7 +39,7 @@ public class Transport extends BaseActivity
         // Fill in tables with current and future missions
         tl = (TableLayout) findViewById(R.id.mainTable);
         // getCurrentMissionFromServer()
-        displayMission(true, tl, "25/11/2017", "2017112501-001", "Annie Cordy", "Marseille - Lille", "42");
+        displayMission(true, tl, "25/12/2017", "2017122501-001", "Annie Cordy", "Marseille - Lille", "42");
 
         tl = (TableLayout) findViewById(R.id.otherTable);
         // getFutureMissionsFromServer()
@@ -48,6 +52,7 @@ public class Transport extends BaseActivity
         TextView usernameText = (TextView) findViewById(R.id.txtUserName);
         usernameText.setText(curMiss.getLogin());
 
+
         // If it's the first launch,set status to "Resting"
         if (_launched == 0)
         {
@@ -56,6 +61,7 @@ public class Transport extends BaseActivity
             newdir.mkdirs();
 
             _driverStatus = STRESTING;
+            curMiss.setTvStatus(getString(R.string.pending));
             _launched = 1;
         }
     }
@@ -64,8 +70,8 @@ public class Transport extends BaseActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        // Inflate the menu; this adds items to the action bar if it is present.
         _statusMenu = menu;
+
         getMenuInflater().inflate(R.menu.menu_transport, menu);
         updateStatus();
         return true;
@@ -74,27 +80,23 @@ public class Transport extends BaseActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-/*        if (id == R.id.action_settings) {
-            return true;
-        } */
-
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
-    // Start Mission activity
-    private void showMission(String ot, String dt, String dr, String jn)
+    // Display current mission activity
+    private void showCurrentMission(String ot, String dt, String dr, String jn)
     {
         curMiss.setTvOt(ot);
         curMiss.setTvDate(dt);
         curMiss.setTvConvoyLeader(dr);
         curMiss.setGlobalJourney(jn);
-        curMiss.setTvStatus(getString(R.string.in_progress));
+
         Intent intent = new Intent(Transport.this, Mission.class);
         startActivity(intent);
     }
@@ -140,7 +142,7 @@ public class Transport extends BaseActivity
                 @Override
                 public void onClick(View v)
                 {
-                    showMission(ot, date, driver, journey);
+                    showCurrentMission(ot, date, driver, journey);
                 }
             });
 

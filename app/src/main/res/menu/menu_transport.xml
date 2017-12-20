@@ -2,33 +2,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="fr.bs_tech.vps.Transport">
-    <!-- <item
+    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" /> -->
+        android:icon="@drawable/vps_logo"
+        app:showAsAction="always">
+        <menu>
+            <group
+                android:id="@+id/grpMissionMenu"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/missionStart"
+                    android:icon="@drawable/ic_play"
+                    android:title="Start this mission"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/missionTransfert"
+                    android:icon="@drawable/ic_pause"
+                    android:title="Switch to other mission"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/missionStop"
+                    android:icon="@drawable/ic_stop"
+                    android:title="Finish this mission"
+                    app:showAsAction="always" />
+            </group>
+        </menu>
+    </item>
     <item
         android:id="@+id/action_driving"
         android:icon="@drawable/ic_steering_wheel"
-        android:title="Driving"
         android:onClick="onClickStatusDriving"
+        android:orderInCategory="1"
+        android:title="Driving"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_working"
         android:icon="@drawable/ic_icon_hammers"
-        android:title="Working"
         android:onClick="onClickStatusWorking"
+        android:orderInCategory="2"
+        android:title="Working"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_onboard"
         android:icon="@drawable/ic_square"
-        android:title="OnBoard"
         android:onClick="onClickStatusOnboard"
+        android:orderInCategory="3"
+        android:title="OnBoard"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_resting"
         android:icon="@drawable/ic_bed"
-        android:title="Resting"
         android:onClick="onClickStatusResting"
+        android:orderInCategory="4"
+        android:title="Resting"
         app:showAsAction="always" />
 </menu>

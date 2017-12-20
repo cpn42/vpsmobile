@@ -358,28 +358,33 @@
                                     android:typeface="serif" />
 
                                 <RadioGroup
+                                    android:id="@+id/rgCategory"
                                     android:layout_span="1"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    android:checkedButton="@={currentmission.convoyCategory}">
 
                                     <RadioButton
-                                        android:id="@+id/radioButton"
+                                        android:id="@+id/rb1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="@string/_1st"
+                                        android:onClick="onCbClicked"
                                         android:textSize="10sp" />
 
                                     <RadioButton
-                                        android:id="@+id/radioButton2"
+                                        android:id="@+id/rb2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="@string/_2nd"
+                                        android:onClick="onCbClicked"
                                         android:textSize="10sp" />
 
                                     <RadioButton
-                                        android:id="@+id/radioButton3"
+                                        android:id="@+id/rb3"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="@string/_3rd"
+                                        android:onClick="onCbClicked"
                                         android:textSize="10sp" />
                                 </RadioGroup>
 
@@ -755,36 +760,6 @@
                         android:stretchColumns="*"></TableLayout>
 
                 </ScrollView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="#FFFF6600"
-                android:orientation="horizontal"
-                android:padding="5dp">
-
-                <ImageView
-                    android:id="@+id/imgStart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_play" />
-
-                <ImageView
-                    android:id="@+id/imgSwitch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_pause" />
-
-                <ImageView
-                    android:id="@+id/imgStop"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_stop" />
-
             </LinearLayout>
 
         </RelativeLayout>
