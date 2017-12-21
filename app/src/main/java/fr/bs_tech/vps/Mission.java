@@ -30,8 +30,6 @@ import fr.bs_tech.vps.databinding.ActivityMission2Binding;
 
 public class Mission extends BaseActivity
 {
-
-
     protected PopupWindow SignaturePopup;
     private String sigType;
 
@@ -96,6 +94,7 @@ public class Mission extends BaseActivity
                                 {
                                     curMiss.setCurrentMissionStatus(MISSIONSTARTED);
                                     curMiss.setTvStatus(getString(R.string.in_progress));
+                                    toggleGPSUpdates(true);
                                     item.setChecked(true);
                                 }
                             })
@@ -117,6 +116,7 @@ public class Mission extends BaseActivity
                                 {
                                     curMiss.setCurrentMissionStatus(MISSIONSWITCHED);
                                     curMiss.setTvStatus(getString(R.string.finished));
+                                    toggleGPSUpdates(false);
                                     item.setChecked(true);
                                 }
                             })
@@ -138,6 +138,7 @@ public class Mission extends BaseActivity
                                 {
                                     curMiss.setCurrentMissionStatus(MISSIONFINISHED);
                                     curMiss.setTvStatus(getString(R.string.finished));
+                                    toggleGPSUpdates(false);
                                     item.setChecked(true);
                                 }
                             })

@@ -1,6 +1,7 @@
 package fr.bs_tech.vps;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -30,9 +31,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import fr.bs_tech.vps.bindings.CurrentMission;
+import fr.bs_tech.vps.utils.Pair;
 import fr.bs_tech.vps.utils.SendHTTPPost;
 
 /**
@@ -71,6 +74,7 @@ public class BaseActivity extends AppCompatActivity
     // Location manager
     public LocationManager locationManager;
     double latGPS, longGPS;
+    ArrayList<Pair> values;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -89,6 +93,8 @@ public class BaseActivity extends AppCompatActivity
                 }
             }
         }
+        locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        values = new ArrayList<Pair>();
     }
 
     /*********************************************************************************************/
@@ -187,17 +193,14 @@ public class BaseActivity extends AppCompatActivity
                 case MISSIONSTARTED:
                     item = _statusMenu.findItem(R.id.missionStart);
                     item.setChecked(true);
-                    toggleGPSUpdates(true);
                     break;
                 case MISSIONSWITCHED:
                     item = _statusMenu.findItem(R.id.missionTransfert);
                     item.setChecked(true);
-                    toggleGPSUpdates(false);
                     break;
                 case MISSIONFINISHED:
                     item = _statusMenu.findItem(R.id.missionStop);
                     item.setChecked(true);
-                    toggleGPSUpdates(false);
                     break;
             }
         } else
@@ -433,8 +436,12 @@ public class BaseActivity extends AppCompatActivity
     {
         public void onLocationChanged(Location location)
         {
+            Pair pair;
             longGPS = location.getLongitude();
             latGPS = location.getLatitude();
+            pair = new Pair(latGPS, longGPS);
+            values.add(pair);
+            Log.d("GPS", "Location changed");
         }
 
         @Override
@@ -472,8 +479,8 @@ public class BaseActivity extends AppCompatActivity
             String provider = locationManager.getBestProvider(crit, true);
             if(provider != null)
             {
-                locationManager.requestLocationUpdates(provider, 1 * 60 * 1000,
-                        1, locationListenerGPS);
+                locationManager.requestLocationUpdates(provider, 10 * 1000,
+                        0.0f, locationListenerGPS);
             }
         }
     }
