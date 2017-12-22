@@ -9,9 +9,11 @@ import android.view.View;
 import android.widget.RadioButton;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import fr.bs_tech.vps.BR;
 import fr.bs_tech.vps.R;
+import fr.bs_tech.vps.utils.Pair;
 
 /**
  * Created by cpellerin on 06/12/2017.
@@ -53,6 +55,11 @@ public class CurrentMission extends BaseObservable implements Serializable
     private String editApproachKm;
     private String editTotalKm;
     private boolean bSignedDischarge;
+
+    // Mission events
+    public ArrayList<MissionEvents> allMissionEvents;
+    // GPS events
+    public ArrayList<Pair> values;
 
     public final ObservableInt convoyCategory = new ObservableInt();
 

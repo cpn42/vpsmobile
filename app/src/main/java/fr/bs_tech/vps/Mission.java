@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NavUtils;
 import android.os.Bundle;
@@ -23,15 +24,22 @@ import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import fr.bs_tech.vps.bindings.MissionEvents;
 import fr.bs_tech.vps.databinding.ActivityMission2Binding;
 
 public class Mission extends BaseActivity
 {
     protected PopupWindow SignaturePopup;
     private String sigType;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -66,6 +74,7 @@ public class Mission extends BaseActivity
 
         // Prevent keyboard to pop up
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        refreshEventTable();
     }
 
     // Callback for toolbar icons others than status ones
@@ -73,6 +82,7 @@ public class Mission extends BaseActivity
     public boolean onOptionsItemSelected(final MenuItem item)
     {
         String title = getString(R.string.mission_status);
+
 
         switch (item.getItemId())
         {
@@ -95,6 +105,7 @@ public class Mission extends BaseActivity
                                     curMiss.setCurrentMissionStatus(MISSIONSTARTED);
                                     curMiss.setTvStatus(getString(R.string.in_progress));
                                     toggleGPSUpdates(true);
+                                    newMissionEvent("Starting mission " + "Maison", false);
                                     item.setChecked(true);
                                 }
                             })
@@ -117,6 +128,7 @@ public class Mission extends BaseActivity
                                     curMiss.setCurrentMissionStatus(MISSIONSWITCHED);
                                     curMiss.setTvStatus(getString(R.string.finished));
                                     toggleGPSUpdates(false);
+                                    newMissionEvent("Switching mission " + "Maison", true);
                                     item.setChecked(true);
                                 }
                             })
@@ -139,6 +151,7 @@ public class Mission extends BaseActivity
                                     curMiss.setCurrentMissionStatus(MISSIONFINISHED);
                                     curMiss.setTvStatus(getString(R.string.finished));
                                     toggleGPSUpdates(false);
+                                    newMissionEvent("Ending mission " + "Maison", true);
                                     item.setChecked(true);
                                 }
                             })
@@ -173,15 +186,15 @@ public class Mission extends BaseActivity
                     break;
                 }
             case R.id.rb1:
-                if(((RadioButton) view).isChecked())
+                if (((RadioButton) view).isChecked())
                     curMiss.setCbCategory(1);
                 break;
             case R.id.rb2:
-                if(((RadioButton) view).isChecked())
+                if (((RadioButton) view).isChecked())
                     curMiss.setCbCategory(2);
                 break;
             case R.id.rb3:
-                if(((RadioButton) view).isChecked())
+                if (((RadioButton) view).isChecked())
                     curMiss.setCbCategory(3);
                 break;
         }

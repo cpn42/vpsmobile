@@ -19,10 +19,13 @@ import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import fr.bs_tech.vps.bindings.CurrentMission;
+import fr.bs_tech.vps.bindings.MissionEvents;
+import fr.bs_tech.vps.utils.Pair;
 import fr.bs_tech.vps.utils.SendHTTPPost;
 
 public class Login extends BaseActivity
@@ -76,6 +79,8 @@ public class Login extends BaseActivity
         json += "\"password\":\"" + MD5(password) +"\"}\n";
 
         curMiss = new CurrentMission();
+        curMiss.allMissionEvents = new ArrayList<MissionEvents>();
+        curMiss.values = new ArrayList<Pair>();
 
         post = new SendHTTPPost();
         post.execute("http://vpsmobile.pierrel.social/json.php", json);

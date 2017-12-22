@@ -23,7 +23,6 @@ public class Transport extends BaseActivity
 {
     TableLayout tl;
     TableRow tr;
-    String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -19,8 +20,13 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -35,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import fr.bs_tech.vps.bindings.CurrentMission;
+import fr.bs_tech.vps.bindings.MissionEvents;
 import fr.bs_tech.vps.utils.Pair;
 import fr.bs_tech.vps.utils.SendHTTPPost;
 
@@ -74,7 +81,8 @@ public class BaseActivity extends AppCompatActivity
     // Location manager
     public LocationManager locationManager;
     double latGPS, longGPS;
-    ArrayList<Pair> values;
+
+    static int cptEventRow = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -94,7 +102,8 @@ public class BaseActivity extends AppCompatActivity
             }
         }
         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        values = new ArrayList<Pair>();
+
+
     }
 
     /*********************************************************************************************/
@@ -127,12 +136,14 @@ public class BaseActivity extends AppCompatActivity
     public void onClickStatusDriving(MenuItem item)
     {
         _driverStatus = STDRIVING;
+        newMissionEvent("Starting to drive", false);
         updateStatus();
     }
 
     public void onClickStatusWorking(MenuItem item)
     {
         _driverStatus = STWORKING;
+        newMissionEvent("Starting to work", false);
         updateStatus();
     }
 
@@ -145,6 +156,7 @@ public class BaseActivity extends AppCompatActivity
     public void onClickStatusResting(MenuItem item)
     {
         _driverStatus = STRESTING;
+        newMissionEvent("Starting to rest", true);
         updateStatus();
     }
 
@@ -440,7 +452,7 @@ public class BaseActivity extends AppCompatActivity
             longGPS = location.getLongitude();
             latGPS = location.getLatitude();
             pair = new Pair(latGPS, longGPS);
-            values.add(pair);
+            curMiss.values.add(pair);
             Log.d("GPS", "Location changed");
         }
 
@@ -485,5 +497,102 @@ public class BaseActivity extends AppCompatActivity
         }
     }
 
+    public void refreshEventTable()
+    {
+        if (!(getActivityName().equals("Mission")))
+            return;
+
+        TextView[] txt = new TextView[6];
+        MissionEvents mEv;
+        TableRow tr;
+        TableLayout tl = (TableLayout) findViewById(R.id.dynEventsTable);
+        tl.removeAllViews();
+
+        for (int i = 0; i < curMiss.allMissionEvents.size(); i++)
+        {
+            tr = new TableRow(this);
+            mEv = curMiss.allMissionEvents.get(i);
+            // arrival is true for a final arrival (end of mission, rest...)
+            tr.setId(cptEventRow);
+            txt[0] = new TextView(this);
+            txt[0].setId(cptEventRow * 1000);
+            txt[0].setText(mEv.getDate());
+            txt[0].setTextColor(Color.BLACK);
+            txt[0].setGravity(Gravity.LEFT);
+            tr.addView(txt[0]);
+            txt[1] = new TextView(this);
+            txt[1].setId((cptEventRow * 1000) + 1);
+            txt[1].setText(mEv.getDeparture());
+            txt[1].setTextColor(Color.BLACK);
+            txt[1].setGravity(Gravity.CENTER);
+            tr.addView(txt[1]);
+            txt[2] = new TextView(this);
+            txt[2].setId((cptEventRow * 1000) + 2);
+            txt[2].setText(mEv.getHdep());
+            txt[2].setTextColor(Color.BLACK);
+            txt[2].setGravity(Gravity.CENTER);
+            tr.addView(txt[2]);
+            txt[3] = new TextView(this);
+            txt[3].setId((cptEventRow * 1000) + 3);
+            txt[3].setTextColor(Color.BLACK);
+            txt[3].setGravity(Gravity.CENTER);
+            txt[3].setText(mEv.getArrival());
+            tr.addView(txt[3]);
+            txt[4] = new TextView(this);
+            txt[4].setId((cptEventRow * 1000) + 4);
+            txt[4].setTextColor(Color.BLACK);
+            txt[4].setGravity(Gravity.CENTER);
+            txt[4].setText(mEv.getHarr());
+            tr.addView(txt[4]);
+            txt[5] = new TextView(this);
+            txt[5].setId((cptEventRow * 1000) + 5);
+            txt[1].setGravity(Gravity.END);
+            txt[5].setTextColor(Color.BLACK);
+            int k = mEv.getKm();
+            txt[5].setText(String.valueOf(k));
+            tr.addView(txt[5]);
+            tl.addView(tr, new TableLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            ));
+            cptEventRow++;
+        }
+    }
+
+    public void newMissionEvent(String location, boolean term)
+    {
+        MissionEvents missEv;
+        final String timeStamp = new SimpleDateFormat("dd/MM/yyyy-HH:mm").
+                format(Calendar.getInstance().getTime());
+        final String dh[] = timeStamp.split("-");
+
+        if (curMiss.allMissionEvents.isEmpty())    // First event
+        {
+            missEv = new MissionEvents(dh[0], location, dh[1], "", "", 0);
+            curMiss.allMissionEvents.add(missEv);
+            refreshEventTable();
+            return;
+        }
+        missEv = curMiss.allMissionEvents.get(curMiss.allMissionEvents.size() - 1);
+        if (!missEv.getArrival().equals(""))   // Already full line so create a new one
+        {
+            missEv = new MissionEvents(dh[0], location, dh[1], "", "", 0);
+            curMiss.allMissionEvents.add(missEv);
+            refreshEventTable();
+            return;
+        } else
+        {
+            missEv.setArrival(location);
+            missEv.setHarr(dh[1]);
+            missEv.setKm(0);        // TODO : calculate distance
+            if (!term)               // Do we have to copy arrival to next departure ?
+            {
+                cptEventRow++;
+                missEv = new MissionEvents(dh[0], location, dh[1], "", "", 0);
+                curMiss.allMissionEvents.add(missEv);
+            }
+            refreshEventTable();
+        }
+    }
 
 }
